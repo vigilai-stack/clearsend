@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearSend: check a portal message before you send it</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>ClearSend</h1>
+  <p class="tag">Check a message to your clinic before you send it. Your health details stay on this computer.</p>
+  <p id="mode" class="mode" role="status">Starting…</p>
+</header>
+<main>
+  <section aria-labelledby="msg-h">
+    <h2 id="msg-h">Your message to the clinic</h2>
+    <label for="msg" class="sr">Message</label>
+    <textarea id="msg" rows="7" placeholder="Hi, I need a refill of…"></textarea>
+    <div class="row">
+      <button id="check" type="button">Check my message</button>
+      <select id="samples" aria-label="Try a sample message"><option value="">Try a sample…</option></select>
+    </div>
+  </section>
+
+  <section id="alert" class="alert" hidden aria-live="assertive"></section>
+
+  <section id="result" hidden aria-live="polite">
+    <h2>Before you send</h2>
+    <dl>
+      <dt>Goes to</dt><dd id="category"></dd>
+      <dt>Summary the front desk will see first</dt><dd id="summary"></dd>
+    </dl>
+    <div id="removed-box" hidden>
+      <h3>Taken out of your message</h3>
+      <ul id="removed"></ul>
+      <p class="hint">Clinics never need these in a portal message. Give them by phone only if the clinic asks.</p>
+    </div>
+    <div id="missing-box" hidden>
+      <h3>The care team will probably ask</h3>
+      <ul id="missing"></ul>
+    </div>
+    <h3>Message that will be sent</h3>
+    <pre id="send"></pre>
+    <p id="route" class="hint"></p>
+  </section>
+
+  <section aria-labelledby="q-h" class="question">
+    <h2 id="q-h">General question (no personal details)</h2>
+    <p class="hint">For things like "What does prior authorization mean?" This one may use a cloud model, but only if it has nothing personal in it.</p>
+    <input id="q" type="text" aria-label="General question">
+    <button id="ask" type="button">Ask</button>
+    <p id="answer" aria-live="polite"></p>
+  </section>
+</main>
+<footer>
+  <p>Demo with made-up messages. Not medical advice and not a medical device. In an emergency, call 911.</p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
